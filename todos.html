@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+</head>
+<body>
+    <div>
+        <input id="title" type="text" placeholder="Title">
+        <br><br>
+        <input id="description" type="text" placeholder="Description">
+        <br><br>
+        <button onclick="addTodo()">Add Todo</button>
+        <br>
+        <div id="container"></div>
+    </div>
+
+    <script>
+        let globalId = 1;
+
+
+        function markAsDone(todoId){
+            const parent=document.getElementById(todoId);
+            parent.children[2].innerHTML="Done";
+
+            parent.setAttribute("onclick",`Done(${todoId})`);
+        }
+
+        function createChild(title, description, id) {
+            const child = document.createElement("div");
+
+            const firstGrandchild = document.createElement("div");
+            firstGrandchild.innerHTML = title;
+
+            const secondGrandchild = document.createElement("div");
+            secondGrandchild.innerHTML = description;
+
+            const thirdGrandchild = document.createElement("button");
+            thirdGrandchild.innerHTML = "Mark as done";
+
+            thirdGrandchild.setAttribute("onclick",`markAsDone(${id})`);
+
+            child.appendChild(firstGrandchild);
+            child.appendChild(secondGrandchild);
+            child.appendChild(thirdGrandchild);
+
+            child.setAttribute("id", id);
+
+            return child;
+        }
+
+        function addTodo() {
+            const title = document.getElementById("title").value;
+            const description = document.getElementById("description").value;
+
+            const parent = document.getElementById("container");
+
+            parent.appendChild(createChild(title, description, globalId++));
+
+            // Clear the input fields
+            // document.getElementById("title").value = '';
+            // document.getElementById("description").value = '';
+        }
+    </script>
+</body>
+</html>

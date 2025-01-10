@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo state</title>
+</head>
+<body>
+    <div>
+        <input id="title" type="text" placeholder="Title">
+        <br><br>
+        <input id="description" type="text" placeholder="Description">
+        <br><br>
+        <!-- <button onclick="addTodo()">Add Todo</button> -->
+        <br>
+        <div id="container"></div>
+    </div>
+    <script>
+// Every elements of state would have a title, description and id
+// state will always be an array 
+
+        function updateTodoAccordingTOState(state){
+            const parent =document.getElementById("container");
+            parent.innerHTML="";
+            for(let i=0;i<state.length;i++){
+                const child=createChild(state[i].title,state[i].description,state[i].id);
+                parent.appendChild(child);
+            }
+        }
+        updateTodoAccordingTOState([{
+            title: "go to gym",
+            description: "go to dym from 5-7",
+            id: 1
+        },{
+            title: "go to gym",
+            description: "go to dym from 5-6",
+            id: 2
+        },
+        {
+            title: "go to gym",
+            description: "go to dym from 5-8",
+            id: 3
+        }
+    ])
+
+        function createChild(title, description, id) {
+            const child = document.createElement("div");
+
+            const firstGrandchild = document.createElement("div");
+            firstGrandchild.innerHTML = title;
+
+            const secondGrandchild = document.createElement("div");
+            secondGrandchild.innerHTML = description;
+
+            const thirdGrandchild = document.createElement("button");
+            thirdGrandchild.innerHTML = "Mark as done";
+
+            thirdGrandchild.setAttribute("onclick",`markAsDone(${id})`);
+
+            child.appendChild(firstGrandchild);
+            child.appendChild(secondGrandchild);
+            child.appendChild(thirdGrandchild);
+
+            child.setAttribute("id", id);
+
+            return child;
+            
+        }
+
+    </script>
+</body>
+</html>

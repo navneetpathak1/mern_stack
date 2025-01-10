@@ -1,0 +1,80 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning DOM</title>
+</head>
+<body>
+    <form id="loginForm" >
+        First name:
+        <input type="text" name="fname" value="navneet">
+        <br>
+        Last name: 
+        <input type="text" name="lname" value="pathak">
+        <br>
+        <input type="submit" value="Submit">    
+    </form>
+    <p>Click the "try it" button to display the number of elements in the form.</p>
+    <button onclick="myFunction()">Try it</button>
+    <p id="displaySpace"></p>
+
+    <script>
+        function myFunction() {
+            var form = document.getElementById("loginForm");
+            var numElements = form.elements.length;
+            var firstName = form.elements[0].value;
+            var lastName = form.elements[1].value; 
+
+            document.getElementById("displaySpace").innerHTML = "Found " + numElements + " elements in the form. First name entered is " + firstName + "and end with last name "+ lastName+".";
+
+            const para=document.createElement("p");
+            para.innerText="this is the para created via dom"
+            document.body.appendChild(para)
+        }
+    </script>
+</body>
+<body>
+    <h1>Header</h1>
+    <p>This is a header.</p>
+</body>
+</html> -->
+
+<!-- get element by class name -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Learning</title>
+</head>
+<body>
+    <h2>JavaScript with HTML</h2>
+    <p>Finding HTML element with class name</p>
+
+    <p class="intro">Hello India</p>
+    <p class="intro">Hello World</p>
+    <p id="demo"></p>
+    
+    <script>
+        const x = document.getElementsByClassName("intro");
+        document.getElementById("demo").innerHTML = "The first paragraph with class 'intro' is: " + x[0].innerHTML;
+    </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript with dom</h1>
+    <p> <b>dom css selector </b></p>
+    query selector all
+    
+</body>
+</html>

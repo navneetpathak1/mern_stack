@@ -1,0 +1,63 @@
+<html>
+<head>
+    <style>
+        .bg-black {
+            background-color: #454545;
+            color: aqua;
+        }
+    </style>
+</head>
+<body class="bg-black">   
+
+    <!-- <script>
+        function counter(){
+     const currentValue=  document.getElementById("btn").innerHTML;
+     console.log(currentValue.split(" "));
+     const currentCounter=currentValue.split(" ")[1];
+
+     const newCount=parseInt(currentCounter)+1;
+     document.getElementById("btn").innerHTML="counter: "+ newCount;
+        }
+    </script>
+    <center>
+    <button id="btn" onclick="counter()">counter: 0</button>
+    </center>     -->
+
+
+
+    
+    <div id="buttonParent"></div>
+
+    <script>
+        let state = {
+            count: 0
+        };
+    
+        function onButtonPress() {
+            state.count++; // Increment the count
+            buttonComponentRerender(); // Re-render the button component
+        }
+    
+        function buttonComponentRerender() {
+            // Clear the current button
+            document.getElementById("buttonParent").innerHTML = "";
+            const component = buttonComponent(state.count);
+            // Append the newly created button component to the DOM
+            document.getElementById("buttonParent").appendChild(component);
+        }
+    
+        function buttonComponent(count) {
+            const button = document.createElement("button");
+            button.innerHTML = `counter ${count}`; // Corrected template literal
+            button.onclick = onButtonPress; // Corrected event handler assignment
+            return button; // Return the created button component
+        }
+    
+        // Initial render
+        buttonComponentRerender();
+    </script>
+    
+
+
+</body>
+</html>
