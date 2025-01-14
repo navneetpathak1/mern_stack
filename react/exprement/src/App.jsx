@@ -230,7 +230,7 @@
 // export default App;
 
 
-// ! wrapper component
+// ! wrapper component (children concept in react)
 
 // function App() {
   
@@ -736,7 +736,7 @@
   // export default App;
   
 
-// ! custom hooks  you can write your own hooks. only condition is it should start with "use"
+// ! custom hooks=>  you can write your own hooks. only condition is it should start with "use"
 
 // import React, { useEffect, useState } from "react";
 // import axios from "axios";
@@ -769,17 +769,46 @@
 
 // ! reconciliation => finding the what should dom lock like using the given state
 
-import React, { useEffect, useState } from "react";
- 
+// ! useRef =>  access dom element access
+  // document.getElementById
+
+// import React, { useEffect, useRef, useState } from "react";  
+
+
+// function App() {
+//   const [incomeTax, setIncomeTax] = useState(2000);
+
+//   const divRef=useRef();
+
+//   useEffect(()=>{
+//     setTimeout(()=>{
+//       divRef.Current.innerHTML ="10"
+//     },5000)
+//   },[])
+
+
+//   return (
+//     <>
+//       hi there your income tax returns are <div ref={divRef}>{incomeTax}</div>
+//     </>
+//   );
+// }
+// export default App;
+
+// ! Routing => 
+  // ! jargon
+// ! 1. single page application=> react is a single page application
+// ! 2. client side bundle 
+// ! 3. client side routing
+
+import React, { useEffect, useRef, useState } from "react";  
+
 function App() {
 
   return (
     <>
- 
+
     </>
   );
 }
-
-
-
 export default App;
