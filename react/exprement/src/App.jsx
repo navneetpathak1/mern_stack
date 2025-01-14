@@ -901,42 +901,196 @@
 // ! lazy loading => complete bundle of code come back when you enter the website.
 // ! Sometime a person come only in landing page
 
-// ! suspense API
+// ! suspense API=>When using React.lazy,
+// ! you must wrap the lazy-loaded components in a Suspense component to handle the loading state.
 
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
-import { lazy, Suspense } from "react";
+// import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+// import { lazy, Suspense } from "react";
 
-// Lazy-loaded components
-const Dashboard = lazy(() => import("./components/Dashboard")); // Ensure default export in Dashboard
-const Landing = lazy(() => import("./components/landing"));
+// const Dashboard = lazy(() => import("./components/Dashboard")); // Ensure default export in Dashboard
+// const Landing = lazy(() => import("./components/landing"));
+
+// function App() {
+//   return (
+//     <>
+//       <BrowserRouter>
+//         <Appbar />
+//         <div>
+//           <h3>Hi, this is the top bar</h3>
+//           <Suspense fallback={<div>Loading...</div>}>
+//             <Routes>
+//               <Route path="/dashboard" element={<Dashboard />} />
+//               <Route path="/" element={<Landing />} />
+//             </Routes>
+//           </Suspense>
+//         </div>
+//       </BrowserRouter>
+//     </>
+//   );
+// }
+
+// function Appbar() {
+//   const navigate = useNavigate();
+//   return (
+//     <div>
+//       <div>
+//         <button onClick={() => navigate("/")}>Landing Page</button>
+//         <button onClick={() => navigate("/dashboard")}>Dashboard Page</button>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+// ! prop drilling => props pass through the components tree, very hard to maintain and
+// ! highly verbose make code highly unreadable
+
+// import { useState } from "react";
+
+// function App() {
+//   const [count,setCount] = useState(0);
+//   return (
+//     <>  
+//       <Count count={count} setCount={setCount}></Count>
+//     </>
+//   );
+// }
+
+// function Count({count ,setCount}) {
+//  return <div>
+//   {count}
+//   <Button count={count} setCount={setCount}></Button>
+//  </div>
+// }
+
+// function Button({count , setCount}) {
+
+//   function increment(){
+//     setCount(count+1);
+//   }
+//   function decrement(){
+//     if(count>0) setCount(count-1);
+//   }
+//   return <div>
+//     <button onClick={increment}>incr</button>
+//     <button onClick={decrement}>dcr</button>
+//   </div>
+// }
+// export default App;
+
+
+// ! context API=> it lets you solve prop drilling
+// ! teleport data form one node to another
+// ! it lets you keep all state logic outside the core react component
+
+// !wrap anyone that wants to use the teleported value inside a provider
+
+
+// import React, { createContext, useContext, useState } from "react";
+
+// // Create the context
+// export const CountContext = createContext();
+
+// function App() {
+//   const [count, setCount] = useState(0);
+
+//   return (
+//     <>  
+//       <CountContext.Provider value={count}>
+//         <Count setCount={setCount} />
+//       </CountContext.Provider>
+//     </>
+//   );
+// }
+
+// function Count({ setCount }) {
+//   return (
+//     <div>
+//       <CountRender />
+//       <Button setCount={setCount} />
+//     </div>
+//   );
+// }
+
+// function CountRender() {
+//   const count = useContext(CountContext);
+//   return <div>{count}</div>;
+// }
+
+// function Button({ setCount }) {
+//   const count = useContext(CountContext);
+
+//   function increment() {
+//     setCount(count + 1);
+//   }
+
+//   function decrement() {
+//     if (count > 0) setCount(count - 1);
+//   }
+
+//   return (
+//     <div>
+//       <button onClick={increment}>Increment</button>
+//       <button onClick={decrement}>Decrement</button>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+// !
+
+import React, { createContext, useContext, useState } from "react";
+
+// Create the context with default values
+export const CountContext = createContext({
+  count: 0,
+  setCount: () => {},
+});
 
 function App() {
+  const [count, setCount] = useState(0);
+
   return (
-    <>
-      <BrowserRouter>
-        <Appbar />
-        <div>
-          <h3>Hi, this is the top bar</h3>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/" element={<Landing />} />
-            </Routes>
-          </Suspense>
-        </div>
-      </BrowserRouter>
+    <>  
+      <CountContext.Provider value={{ count, setCount }}>
+        <Count />
+      </CountContext.Provider>
     </>
   );
 }
 
-function Appbar() {
-  const navigate = useNavigate();
+function Count() {
   return (
     <div>
-      <div>
-        <button onClick={() => navigate("/")}>Landing Page</button>
-        <button onClick={() => navigate("/dashboard")}>Dashboard Page</button>
-      </div>
+      <CountRender />
+      <Button />
+    </div>
+  );
+}
+
+function CountRender() {
+  const { count } = useContext(CountContext);
+  return <div>{count}</div>;
+}
+
+function Button() {
+  const { count, setCount } = useContext(CountContext);
+
+  function increment() {
+    setCount(count + 1);
+  }
+
+  function decrement() {
+    if (count > 0) setCount(count - 1);
+  }
+
+  return (
+    <div>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
     </div>
   );
 }
