@@ -319,31 +319,31 @@
 
 // function App() {
 //   const [todos,setTodo]=useState([]);
-//   useEffect(function(){
-//     setInterval(()=>{
-//       fetch("https://sun-server.100xdevs.com/todos")
-//     .then(async (res)=>{
-//       const json=await res.json();
-//       setTodos(json.Todos);
-//     })
-//     },10000)
+  // useEffect(function(){
+  //   setInterval(()=>{
+  //     fetch("https://sun-server.100xdevs.com/todos")
+  //   .then(async (res)=>{
+  //     const json=await res.json();
+  //     setTodos(json.Todos);
+  //   })
+  //   },10000)
 
-//   },[200])
-//   return <>
+  // },[200])
+  // return <>
 
-//   <div>
-//     {todos.length}
-//   {todos.map((todo) => (
-//         <Todo
-//           key={todo.id}
-//           title={todo.title}
-//           description={todo.description}
-//         />
-//   ))}    
-//   </div>
+  // <div>
+  //   {todos.length}
+  // {todos.map((todo) => (
+  //       <Todo
+  //         key={todo.id}
+  //         title={todo.title}
+  //         description={todo.description}
+  //       />
+  // ))}    
+  // </div>
     
 
-//   </>
+  // </>
 
 // }
 // function Todo({title,description}){
@@ -357,21 +357,221 @@
 
 //! common hooks in react
 
+// ! useState => it lets you describe the state of your application
 
-import React, { useEffect } from "react";
+// import React, { useState } from "react";
+
+// function App() {
+//   const [count,setCount]=useState(0);
+//   function increment(){
+//     setCount(count+1)
+//   }
+// return <>
+
+//   <button onClick={increment}>Counter {count}</button>
+
+
+//   </>
+
+// }
+
+// export default App;
+
+
+//! useEffect => to use side effects`1
+
+// import React, { useEffect, useState } from "react";
+
+// function App() { 
+//   const [todos,setTodo]=useState([]);
+
+//   useEffect(function(){ //! the code run only one time when the app will run 
+//     setInterval(()=>{
+//       fetch("https://sun-server.100xdevs.com/todos")
+//     .then(async (res)=>{
+//       const json=await res.json();
+//       setTodos(json.Todos);
+//     })
+//     },10000)
+
+//   },[]) //! dependency array =>state var as input and any time state var change the code will re-run
+//   return <>
+
+//   <div>
+//     {todos.length}
+//   {todos.map((todo) => (
+//         <Todo
+//           key={todo.id}
+//           title={todo.title}
+//           description={todo.description}
+//         />
+//   ))}    
+//   </div>
+
+//   </>
+
+// }
+
+// export default App;
+
+
+// ! when id change  only then  todo change
+
+
+// import React, { useEffect, useState } from "react";
+// import axios from "axios";
+
+// function App() {
+//   const [count, setCount] = useState(0);
+  
+//   function increment() {
+//     setCount(count + 1);
+//   }
+
+//   return (
+//     <>
+//       <Todo id={1} />
+//     </>
+//   );
+// }
+
+// function Todo({ id }) {
+//   const [todo, setTodo] = useState(null); // Initialize with null or an empty object
+  
+//   useEffect(() => {
+//     axios
+//       .get("https://sum-server.100xdevs.com/todo?id=" + id)
+//       .then(function (response) {
+//         setTodo(response.data.todos);
+//       })
+//       .catch((error) => {
+//         console.error("Error fetching todo:", error);
+//       });
+//   }, [id]); // Add id as a dependency
+
+//   return (
+//     <div>
+//       {todo ? (
+//         <>
+//           <h3>{todo.title}</h3>
+//           <p>{todo.description}</p>
+//         </>
+//       ) : (
+//         <p>Loading...</p>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+// ! according to button todo change
+
+// import React, { useEffect, useState } from "react";
+// import axios from "axios";
+
+// function App() {
+//   const [count, setCount] = useState(0);
+  
+//   function increment() {
+//     setCount(count + 1);
+//   }
+//   function decr() {
+//     if (count > 0) {
+//       setCount(count - 1);
+//     }
+//   }
+//   return (
+//     <>
+//       <button onClick={increment}>+</button>
+//       <button onClick={decr}>-</button>
+//       <p>Current Count: {count}</p>
+//       <Todo id={count} />
+//     </>
+//   );
+// }
+
+// function Todo({ id }) {
+//   const [todo, setTodo] = useState(null); // Initialize with null or an empty object
+  
+//   useEffect(() => {
+//     axios
+//       .get("https://sum-server.100xdevs.com/todo?id=" + id)
+//       .then(function (response) {
+//         setTodo(response.data.todos);
+//       })
+//       .catch((error) => {
+//         console.error("Error fetching todo:", error);
+//       });
+//   }, [id]); // Add id as a dependency
+
+//   return (
+//     <div>
+//       {todo ? (
+//         <>
+//           <h3>{todo.title}</h3>
+//           <p>{todo.description}</p>
+//         </>
+//       ) : (
+//         <p>Loading...</p>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+// ! click on the button then id become the that clicked button number 
+
+
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
+  const [count, setCount] = useState(1);
+  function update(no){
+    setCount(no);
+  }
   
-  useEffect(function(){
-    alert("hi there")
-  },[])
-  return <>
+  return (
+    <>
+      <button onClick={() => update(1)}>1</button>
+      <button onClick={() => update(2)}>2</button>
+      <button onClick={() => update(3)}>3</button>
+      
+      <Todo id={count} />
+    </>
+  );
+}
 
-  <div>hello</div>
-    
+function Todo({ id }) {
+  const [todo, setTodo] = useState(null); // Initialize with null or an empty object
+  
+  useEffect(() => {
+    axios
+      .get(`https://sum-server.100xdevs.com/todo?id=${id}`)
+      .then(function (response) {
+        setTodo(response.data.todos);
+      })
+      .catch((error) => {
+        console.error("Error fetching todo:", error);
+      });
+  }, [id]); // Add id as a dependency
 
-  </>
-
+  return (
+    <div>
+      {todo ? (
+        <>
+          <h3>{todo.title}</h3>
+          <p>{todo.description}</p>
+        </>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+  );
 }
 
 export default App;
