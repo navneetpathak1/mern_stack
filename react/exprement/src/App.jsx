@@ -526,52 +526,260 @@
 // ! click on the button then id become the that clicked button number 
 
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+// import React, { useEffect, useState } from "react";
+// import axios from "axios";
 
-function App() {
-  const [count, setCount] = useState(1);
-  function update(no){
-    setCount(no);
-  }
+// function App() {
+//   const [count, setCount] = useState(1);
+//   function update(no){
+//     setCount(no);
+//   }
   
+//   return (
+//     <>
+//       <button onClick={() => update(1)}>1</button>
+//       <button onClick={() => update(2)}>2</button>
+//       <button onClick={() => update(3)}>3</button>
+      
+//       <Todo id={count} />
+//     </>
+//   );
+// }
+
+// function Todo({ id }) {
+//   const [todo, setTodo] = useState(null); // Initialize with null or an empty object
+  
+//   useEffect(() => {
+//     axios
+//       .get(`https://sum-server.100xdevs.com/todo?id=${id}`)
+//       .then(function (response) {
+//         setTodo(response.data.todos);
+//       })
+//       .catch((error) => {
+//         console.error("Error fetching todo:", error);
+//       });
+//   }, [id]); // Add id as a dependency
+
+//   return (
+//     <div>
+//       {todo ? (
+//         <>
+//           <h3>{todo.title}</h3>
+//           <p>{todo.description}</p>
+//         </>
+//       ) : (
+//         <p>Loading...</p>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+// ! useMemo 
+// ! memoization-> remembering some output given an input not computing it again
+
+// import React, { useState } from "react";
+
+// function App() {
+//   const [count, setCount] = useState(0);
+//   const [inputVal, setInputVal] = useState(1);
+
+//   function increment() {
+//     setCount(count + 1);
+//   }
+//   let counter = 0;
+//   for (let i = 1; i <= inputVal; i++) {
+//     counter += i;
+//   }
+
+//   return (
+//     <>
+//       <input
+//         type="number"
+//         value={inputVal}
+//         onChange={(e) => setInputVal((e.target.value))} 
+//       />
+//       <p>
+//         Sum from 1 to {inputVal} is {counter}
+//       </p>
+//       <br />
+//       <button onClick={increment}>Counter {count}</button>
+//     </>
+//   );
+// }
+
+// export default App;
+
+
+// ! using useEffect
+
+// import React, { useEffect, useState } from "react";
+
+// function App() {
+//   const [count, setCount] = useState(0);
+//   const [inputVal, setInputVal] = useState(1);
+//   const [finalVal,setFinal] = useState(0); //! two rerender
+//   function increment() {
+//     setCount(count + 1);
+//   }
+//   useEffect(()=>{
+//     let counter = 0;
+//     for (let i = 1; i <= inputVal; i++) {
+//       counter += i;
+//     }
+//     setFinal(counter);
+//   },[inputVal])
+
+//   return (
+//     <>
+//       <input
+//         type="number"
+//         value={inputVal}
+//         onChange={(e) => setInputVal((e.target.value))} 
+//       />
+//       <p>
+//         Sum from 1 to {inputVal} is {finalVal}
+//       </p>
+//       <br />
+//       <button onClick={increment}>Counter {count}</button>
+//     </>
+//   );
+// }
+
+// export default App;
+
+
+// ! useMemo
+
+// import React, { useMemo, useState } from "react";
+
+// function App() {
+//   const [count, setCount] = useState(0);
+//   const [inputVal, setInputVal] = useState(1);
+  
+  // function increment() {
+  //      setCount(count + 1);
+  //  }
+
+//   let counter=useMemo(()=>{
+//     let ans=0;
+//     for(let i=0;i<inputVal;i++){
+//       ans+=i;
+//     }
+//     return ans;
+
+//   },[inputVal])
+
+
+//   return (
+//     <>
+//       <input
+//         type="number"
+//         value={inputVal}
+//         onChange={(e) => setInputVal((e.target.value))} 
+//       />
+//       <p>
+//         Sum from 1 to {inputVal} is {counter}
+//       </p>
+//       <br />
+//       <button onClick={increment}>Counter {count}</button>
+//     </>
+//   );
+// }
+
+// export default App;
+
+
+// ! useCallback
+
+// ! useCallback => used to memoize functions, which can helps in optimizing the performance of application
+// ! especially in cases involving child components that rely on reference equality to prevent unnecessary renders
+
+//! reference equality
+
+
+  // import React, { memo, useCallback, useMemo, useState } from "react";
+
+  // function App() {
+  //   const [count, setCount] = useState(0);
+
+    // function inputFunction(){
+    //   console.log("hi there")
+    // } //! this will also rerender because react can not determine that input is changing or not
+
+  //   const inputFunction= useCallback(()=>{
+  //     console.log("hi there");
+  //   },[]) //! now react can determine that no change means no re rendering
+    
+  //   return (
+  //     <>
+  //     <ButtonComponent inputFunction={inputFunction}/>
+  //       <button onClick={()=>{
+  //         setCount(count+1)
+  //       }}>Counter {count}</button>
+
+  //     </>
+  //   );
+  // }
+  
+  // const ButtonComponent = memo(({inputFunction})=>{
+  //   console.log("child render");
+
+  //   return <div>
+  //     <button>button clicked</button>
+  //   </div>
+  // })
+
+
+  // export default App;
+  
+
+// ! custom hooks  you can write your own hooks. only condition is it should start with "use"
+
+// import React, { useEffect, useState } from "react";
+// import axios from "axios";
+
+// function useTodos() {
+//   const [Todos,seTodos] = useState([]);
+
+//   useEffect(()=>{
+//     axios
+//       .get("https://sum-server.100xdevs.com/todo?id=" + id)
+//       .then(function (response) {
+//         setTodo(response.data.todos);
+//       })
+//   },[])
+// }
+
+// function App() {
+//   const todos=useTodos();
+
+//   return (
+//     <>
+//       {todos}
+//     </>
+//   );
+// }
+
+
+
+// export default App;
+
+// ! reconciliation => finding the what should dom lock like using the given state
+
+import React, { useEffect, useState } from "react";
+ 
+function App() {
+
   return (
     <>
-      <button onClick={() => update(1)}>1</button>
-      <button onClick={() => update(2)}>2</button>
-      <button onClick={() => update(3)}>3</button>
-      
-      <Todo id={count} />
+ 
     </>
   );
 }
 
-function Todo({ id }) {
-  const [todo, setTodo] = useState(null); // Initialize with null or an empty object
-  
-  useEffect(() => {
-    axios
-      .get(`https://sum-server.100xdevs.com/todo?id=${id}`)
-      .then(function (response) {
-        setTodo(response.data.todos);
-      })
-      .catch((error) => {
-        console.error("Error fetching todo:", error);
-      });
-  }, [id]); // Add id as a dependency
 
-  return (
-    <div>
-      {todo ? (
-        <>
-          <h3>{todo.title}</h3>
-          <p>{todo.description}</p>
-        </>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  );
-}
 
 export default App;
