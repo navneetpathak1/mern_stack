@@ -801,14 +801,144 @@
 // ! 2. client side bundle 
 // ! 3. client side routing
 
-import React, { useEffect, useRef, useState } from "react";  
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import { Dashboard } from "./components/Dashboard";
+// import { Landing } from "./components/landing";
+
+
+// function App() {
+
+//   return (
+//     <>
+//       <h3>hi this is top bar</h3>
+//       <BrowserRouter>
+//         <Routes>
+//           <Route path="/dashboard" element={<Dashboard/>}></Route>
+//           <Route path="/" element={<Landing/>}></Route>
+//         </Routes>  
+//       </BrowserRouter>
+
+//     </>
+//   );
+// }
+// export default App;
+
+
+// !
+
+
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import { Dashboard } from "./components/Dashboard";
+// import { Landing } from "./components/landing";
+
+
+// function App() {
+
+//   return (
+//     <>  
+//     <div>
+//       <div>
+//         <button onClick={()=>{
+//           window.location.href='/'
+//         }}>Landing page</button>
+
+//         <button onClick={()=>{
+//           window.location.href='/dashboard'
+//         }}>Dashboard page</button>
+//       </div>
+//     </div>
+//       <h3>hi this is top bar</h3>
+//       <BrowserRouter>
+//         <Routes>
+//           <Route path="/dashboard" element={<Dashboard/>}></Route>
+//           <Route path="/" element={<Landing/>}></Route>
+//         </Routes>  
+//       </BrowserRouter>
+
+//     </>
+//   );
+// }
+// export default App;
+
+// ! useNavigate hook
+
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import { Dashboard } from "./components/Dashboard";
+// import { Landing } from "./components/landing";
+
+// function App() {
+//   return (
+//     <>  
+//       <div>
+//         <h3>hi this is top bar</h3>
+//         <BrowserRouter>
+//           <Appbar />
+//           <Routes>
+//             <Route path="/dashboard" element={<Dashboard />} />
+//             <Route path="/" element={<Landing />} />
+//           </Routes>  
+//         </BrowserRouter>
+//       </div>
+//     </>
+//   );
+// }
+
+// function Appbar() {
+//   const navigate = useNavigate();
+//   return (
+//     <div>
+//       <div>
+//         <button onClick={() => navigate('/')}>Landing page</button>
+//         <button onClick={() => navigate('/dashboard')}>Dashboard page</button>
+//       </div>
+//       <h3>hi this is top bar</h3>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+// ! lazy loading => complete bundle of code come back when you enter the website.
+// ! Sometime a person come only in landing page
+
+// ! suspense API
+
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { lazy, Suspense } from "react";
+
+// Lazy-loaded components
+const Dashboard = lazy(() => import("./components/Dashboard")); // Ensure default export in Dashboard
+const Landing = lazy(() => import("./components/landing"));
 
 function App() {
-
   return (
     <>
-
+      <BrowserRouter>
+        <Appbar />
+        <div>
+          <h3>Hi, this is the top bar</h3>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/" element={<Landing />} />
+            </Routes>
+          </Suspense>
+        </div>
+      </BrowserRouter>
     </>
   );
 }
+
+function Appbar() {
+  const navigate = useNavigate();
+  return (
+    <div>
+      <div>
+        <button onClick={() => navigate("/")}>Landing Page</button>
+        <button onClick={() => navigate("/dashboard")}>Dashboard Page</button>
+      </div>
+    </div>
+  );
+}
+
 export default App;
