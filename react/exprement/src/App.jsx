@@ -1040,24 +1040,194 @@
 
 // export default App;
 
-// !
+// ! problem with context-> doesn't fix re-rendering, only fixes prop drilling
 
-import React, { createContext, useContext, useState } from "react";
+// ! state management=>cleaner way to store the state of your app. its lets you teleport state.
+// ! and better solution of unnecessary re-rendering
 
-// Create the context with default values
-export const CountContext = createContext({
-  count: 0,
-  setCount: () => {},
-});
+
+// ! Recoil: state management library for react.it has concept of atom to store the state.
+
+
+// ! an atom can be defined outside the component and it can teleported to any component
+// ! Atom: smallest unit of state.
+// ! atom is similar to useState
+// 1. RecoilRoot
+// 2. atom
+// 3. useRecoilState
+// 4. useSetRecoilValue
+// 5. useSetRecoilState
+// 6. selector
+
+// ! npm i recoil
+
+// import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
+// import { countAtom } from "./store/count";
+
+
+
+// function App() {
+
+//   return (
+//     <>  
+//     <RecoilRoot>
+//       <Count />
+//     </RecoilRoot>
+//     </>
+//   );
+// }
+
+// function Count() {
+//   return (
+//     <div>
+//       <CountRender />
+//       <Button />
+//     </div>
+//   );
+// }
+
+// function CountRender() {
+//   const count=useRecoilValue(countAtom);
+//   return <div>{count}</div>;
+// }
+
+// function Button() {
+   // ! button also re-render
+// const [count,setCount]=useRecoilState(countAtom)
+// console.log("re-render");
+//   return (
+//     <div>
+//       <button onClick={()=>{
+//         setCount(count+1)
+//       }}>Increment</button>
+//       <button onClick={()=>{
+//         setCount(count-1)
+//       }}>Decrement</button>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+// ! useSetRecoilState=>does not re-render more
+
+
+// import { RecoilRoot, useRecoilValue, useSetRecoilState } from "recoil";
+// import { countAtom } from "./store/count";
+
+// function App() {
+
+//   return (
+//     <>  
+//     <RecoilRoot>
+//       <Count />
+//     </RecoilRoot>
+//     </>
+//   );
+// }
+
+// function Count() {
+//   return (
+//     <div>
+//       <CountRender />
+//       <Button />
+//     </div>
+//   );
+// }
+
+// function CountRender() {
+//   const count=useRecoilValue(countAtom);
+//   return <div>{count}</div>;
+// }
+
+// function Button() {
+// const setCount=useSetRecoilState(countAtom)
+//   return (
+//     <div>
+//       <button onClick={()=>{
+//         setCount(count=>count+1)
+//       }}>Increment</button>
+//       <button onClick={()=>{
+//         setCount(count=>count-1)
+//       }}>Decrement</button>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+// ! check count is even
+
+// import { RecoilRoot, useRecoilValue, useSetRecoilState } from "recoil";
+// import { countAtom } from "./store/count";
+
+// function App() {
+
+//   return (
+//     <>  
+//     <RecoilRoot>
+//       <Count />
+//     </RecoilRoot>
+//     </>
+//   );
+// }
+
+// function Count() {
+//   return (
+//     <div>
+//       <CountRender />
+//       <Button />
+//     </div>
+//   );
+// }
+
+// function CountRender() {
+//   const count=useRecoilValue(countAtom);
+//   return <div>{count}
+//     <EvenVal></EvenVal>
+//   </div>;
+// }
+// function EvenVal(){
+//   const count=useRecoilValue(countAtom);
+//   if(count%2==0)
+//   return <div>it is even</div>
+// }
+// function Button() {
+// const setCount=useSetRecoilState(countAtom)
+//   return (
+//     <div>
+//       <button onClick={()=>{
+//         setCount(count=>count+1)
+//       }}>Increment</button>
+//       <button onClick={()=>{
+//         setCount(count=>count-1)
+//       }}>Decrement</button>
+      
+//     </div>
+//   );
+// }
+
+// export default App;
+
+// ! Selector=>
+
+//! A selector represents a piece of derived state.
+//! You can think of derived state as the output of passing state to a pure function
+//! that derives a new value from the said state.
+//! Derived state is a powerful concept because it lets us build dynamic data that depends on other data.
+
+
+
+import { RecoilRoot, useRecoilValue, useSetRecoilState } from "recoil";
+import { countAtom, evenSelector } from "./store/count";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <>  
-      <CountContext.Provider value={{ count, setCount }}>
-        <Count />
-      </CountContext.Provider>
+    <RecoilRoot>
+      <Count />
+    </RecoilRoot>
     </>
   );
 }
@@ -1072,25 +1242,28 @@ function Count() {
 }
 
 function CountRender() {
-  const { count } = useContext(CountContext);
-  return <div>{count}</div>;
+  const count=useRecoilValue(countAtom);
+  return <div>{count}
+    <EvenVal></EvenVal>
+  </div>;
 }
-
+function EvenVal(){
+  const isEven=useRecoilValue(evenSelector);
+  return <div>
+    {isEven ? "it is even" : null}
+  </div>
+}
 function Button() {
-  const { count, setCount } = useContext(CountContext);
-
-  function increment() {
-    setCount(count + 1);
-  }
-
-  function decrement() {
-    if (count > 0) setCount(count - 1);
-  }
-
+const setCount=useSetRecoilState(countAtom)
   return (
     <div>
-      <button onClick={increment}>Increment</button>
-      <button onClick={decrement}>Decrement</button>
+      <button onClick={()=>{
+        setCount(count=>count+1)
+      }}>Increment</button>
+      <button onClick={()=>{
+        setCount(count=>count-1)
+      }}>Decrement</button>
+      
     </div>
   );
 }
