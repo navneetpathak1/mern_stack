@@ -1052,12 +1052,12 @@
 // ! an atom can be defined outside the component and it can teleported to any component
 // ! Atom: smallest unit of state.
 // ! atom is similar to useState
-// 1. RecoilRoot
+// 1. RecoilRoot: rap inside it 
 // 2. atom
-// 3. useRecoilState
-// 4. useSetRecoilValue
-// 5. useSetRecoilState
-// 6. selector
+// 3. useRecoilState : it gives the state and initial value
+// 4. useSetRecoilValue: only value
+// 5. useSetRecoilState: only state not value
+// 6. selector: solve rerender
 
 // ! npm i recoil
 
@@ -1218,54 +1218,247 @@
 
 
 
-import { RecoilRoot, useRecoilValue, useSetRecoilState } from "recoil";
-import { countAtom, evenSelector } from "./store/count";
+// import { RecoilRoot, useRecoilValue, useSetRecoilState } from "recoil";
+// import { countAtom, evenSelector } from "./store/count";
+
+// function App() {
+
+//   return (
+//     <>  
+//     <RecoilRoot>
+//       <Count />
+//     </RecoilRoot>
+//     </>
+//   );
+// }
+
+// function Count() {
+//   return (
+//     <div>
+//       <CountRender />
+//       <Button />
+//     </div>
+//   );
+// }
+
+// function CountRender() {
+//   const count=useRecoilValue(countAtom);
+//   return <div>{count}
+//     <EvenVal></EvenVal>
+//   </div>;
+// }
+// function EvenVal(){
+//   const isEven=useRecoilValue(evenSelector);
+//   return <div>
+//     {isEven ? "it is even" : null}
+//   </div>
+// }
+// function Button() {
+// const setCount=useSetRecoilState(countAtom)
+//   return (
+//     <div>
+//       <button onClick={()=>{
+//         setCount(count=>count+1)
+//       }}>Increment</button>
+//       <button onClick={()=>{
+//         setCount(count=>count-1)
+//       }}>Decrement</button>
+      
+//     </div>
+//   );
+// }
+
+// export default App;
+
+// ! Recoil Deep dive
+
+// ! LinkedIn App bar(hardcode values)
+
+// import { RecoilRoot, useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+// import { jobsAtom, messagingAtom, networkAtom, notificationAtom, totalMessCount } from "./atoms";
+// import { useMemo } from "react";
+
+// function App() {
+//  return <RecoilRoot>
+//   <MainApp></MainApp>
+//  </RecoilRoot>
+// }
+
+// function MainApp(){
+//   const networkCount= useRecoilValue(networkAtom);
+//   const jobsCount = useRecoilValue(jobsAtom);
+//   const messageCount = useRecoilValue(messagingAtom);
+//   const [notificationCount,setNotificationCount] = useRecoilState(notificationAtom);
+
+//   //  const totalCount = networkCount+jobsCount+messageCount+notificationCount;
+ 
+//   // ! useMemo
+
+//   // const totalCount = useMemo(()=>{
+//   //   return networkCount + jobsCount + messageCount + notificationCount;
+//   // },[networkCount, jobsCount, messageCount, notificationCount])
+
+//   // ! selector
+  
+//   const totalCount = useRecoilValue(totalMessCount);
+
+//   return (
+//     <>  
+//           <button>Home</button>
+
+//           <button>My Network {networkCount >= 100 ? "99+" : networkCount }</button>
+//           <button>Jobs {jobsCount}</button>
+//           <button>Messaging {messageCount}</button>
+//           <button>Notification {notificationCount}</button>
+
+//           <button onClick={()=>{
+//             setNotificationCount(notificationCount+1)
+//           }}>Me {totalCount}</button>
+//     </>
+//   );
+// }
+
+
+// export default App;
+
+// ! Asynchronous data queries
+
+// import { RecoilRoot, useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+// import { notifications, totalMessCount } from "./atoms";
+
+// function App() {
+//  return <RecoilRoot>
+//   <MainApp></MainApp>
+//  </RecoilRoot>
+// }
+
+// function MainApp(){
+//   const networkCount = useRecoilValue(notifications);
+//   const totalCount=useRecoilState(totalMessCount)
+
+//   return (
+//     <>  
+//           <button>Home</button>
+
+//           <button>My Network {networkCount >= 100 ? "99+" : networkCount.network }</button>
+//           <button>Jobs {networkCount.jobs}</button>
+//           <button>Messaging {networkCount.message}</button>
+//           <button>Notification {networkCount.notifications}</button>
+
+//           <button onClick={()=>{
+//             setNotificationCount(networkCount.notifications+1)
+//           }}>Me {totalCount}</button>
+//     </>
+//   );
+// }
+
+
+// export default App;
+
+
+// ! atomFamily => sometimes you need more than one atom for your use case
+
+
+
+// import { RecoilRoot, useRecoilValue } from "recoil";
+// import { todosAtomFamily } from "./atomss";
+
+
+
+// function App() {
+//  return <RecoilRoot>
+//     <Todo id={1}></Todo>
+//     <Todo id={2}></Todo>
+//     <Todo id={1}></Todo>
+//     <Todo id={2}></Todo>
+
+//   </RecoilRoot>
+// }
+
+// function Todo({ id }) {
+//   const todo = useRecoilValue(todosAtomFamily(id));
+  
+//   if (!todo) {
+//       return <div>Todo not found!</div>;
+//   }
+
+//   return (
+//       <div>
+//           <h3>{todo.title}</h3>
+//           <p>{todo.description}</p>
+//       </div>
+//   );
+// }
+
+// export default App;
+
+
+// ! selectorFamily
+
+
+// import { RecoilRoot, useRecoilValue } from "recoil";
+// import { todosAtomFamily } from "./atomss";
+
+
+
+// function App() {
+//  return <RecoilRoot>
+//     <Todo id={1}></Todo>
+//     <Todo id={2}></Todo>
+//     <Todo id={1}></Todo>
+//     <Todo id={2}></Todo>
+
+//   </RecoilRoot>
+// }
+
+// function Todo({ id }) {
+//   const todo = useRecoilValue(todosAtomFamily(id));
+  
+//   if (!todo) {
+//       return <div>Todo not found!</div>;
+//   }
+
+//   return (
+//       <div>
+//           <h3>{todo.title}</h3>
+//           <p>{todo.description}</p>
+//       </div>
+//   );
+// }
+
+// export default App;
+
+
+// ! useRecoilStateLoadable, useRecoilValueLoadable => what happens when the values aren't loaded immediately
+// ! how can we show loader on screen when that happens rather than an empty state
+
+
+import { RecoilRoot, useRecoilStateLoadable, useRecoilValue } from "recoil";
 
 function App() {
+ return <RecoilRoot>
+    <Todo id={1}></Todo>
+    <Todo id={2}></Todo>
+    <Todo id={1}></Todo>
+    <Todo id={2}></Todo>
 
-  return (
-    <>  
-    <RecoilRoot>
-      <Count />
-    </RecoilRoot>
-    </>
-  );
-}
-
-function Count() {
-  return (
-    <div>
-      <CountRender />
-      <Button />
-    </div>
-  );
+  </RecoilRoot>
 }
 
-function CountRender() {
-  const count=useRecoilValue(countAtom);
-  return <div>{count}
-    <EvenVal></EvenVal>
-  </div>;
-}
-function EvenVal(){
-  const isEven=useRecoilValue(evenSelector);
-  return <div>
-    {isEven ? "it is even" : null}
-  </div>
-}
-function Button() {
-const setCount=useSetRecoilState(countAtom)
+function Todo({ id }) {
+  const [todo, setTodo] = useRecoilStateLoadable(todosAtomFamily(id));
+  
+  if (!todo) {
+      return <div>Todo not found!</div>;
+  }
+
   return (
-    <div>
-      <button onClick={()=>{
-        setCount(count=>count+1)
-      }}>Increment</button>
-      <button onClick={()=>{
-        setCount(count=>count-1)
-      }}>Decrement</button>
-      
-    </div>
+      <div>
+          <h3>{todo.title}</h3>
+          <p>{todo.description}</p>
+      </div>
   );
 }
 
 export default App;
+
