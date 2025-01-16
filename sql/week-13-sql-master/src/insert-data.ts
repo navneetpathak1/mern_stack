@@ -2,7 +2,7 @@ import { getClient } from "./utils";
 
 async function createEntries() {
     const client = await getClient();
-    const insertUserText = 'INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id';
+    const insertUserText='INSERT INTO users(email,password) VALUES ($1,$2) RETURNING id'; //!$1,$2 for sql injection
     const userValues = ['john.do11e@gmail2.com', 'hashed_password_here'];
 
     let response = await client.query(insertUserText, userValues);

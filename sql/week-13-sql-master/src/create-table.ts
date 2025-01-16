@@ -11,7 +11,7 @@ async function createTable() {
 
     const client = await getClient();
 
-    await client.query(createUserTableQuery);
+    await client.query(createUserTableQuery); // ! send client to database server
 
     const createTodosQuery = `
         CREATE TABLE todos (
