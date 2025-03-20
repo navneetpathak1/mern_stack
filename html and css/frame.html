@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        a {
+            color: green;
+            font-size: 14px;
+        }
+        a:active{
+            color: red;
+        }
+        a:visited {
+            color: darkblue;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Layout</title>
+</head>
+<body style="font-family: Arial, sans-serif;">
+    <div style="border: 2px solid black; text-align: center;">
+        Your name 
+        <br>
+        punch line etc.
+    </div>
+    <div style="display: flex; border: 2px solid black; text-align: center; border-top: none ;">
+        <div style="width: 50%;padding: 10px; border-right: 2px solid black ;">
+            <a href="#" onclick="display('object content','obj.jpg')">Objective</a>
+            <br>
+            <a href="#" onclick="display('personal','obj.jpg')">Personal Information</a>
+            <br>
+            <a href="#" onclick="display('family Background','obj.jpg')">Family Background</a>
+            <br>
+            <a href="#" onclick="display('education','obj.jpg')">Educational Background</a>
+            <br>
+            <a href="#" onclick="display('Experience','obj.jpg')">Experience</a>
+            <br>
+            <a href="#" onclick="display('Achievement','obj.jpg')">Achievements</a>
+            <br>
+            <a href="#" onclick="display('others','obj.jpg')">Others</a>               
+        </div>
+        <div style="width: 60%; padding: 10px; text-align: center;" id="content">
+            <br>
+            <br>
+            <br>
+            Display Information here of selected link
+        </div>
+        <div style="width: 20%; padding: 10px; text-align: center; border-left: 2px solid black; " >
+
+            <br>
+            <br>
+            <img id="image" src="" alt="Relevant Image" style="max-width: 100%; height: auto;">
+        </div>
+    </div>
+    <div style="border: 2px solid black; border-top: none; text-align: center;">
+        your content details
+    </div>
+    <script>
+        function display(content, imagesrc){
+            document.getElementById("content").innerHTML = content;
+            document.getElementById("image").src = imagesrc;
+        }
+    </script>
+
+</body>
+</html>

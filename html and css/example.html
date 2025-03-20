@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Elements Demonstration</title>
+</head>
+<body>
+
+    <!-- I. <Video> -->
+    <h2>1. Video Element</h2>
+    <video controls width="400">
+        <source src="sample.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- II. <Audio> -->
+    <h2>2. Audio Element</h2>
+    <audio controls>
+        <source src="sample.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <!-- III. <Header> -->
+    <header>
+        <h1>3. Header Element</h1>
+        <p>This is the website's header section.</p>
+    </header>
+
+    <!-- IV. <Footer> -->
+    <footer>
+        <h3>4. Footer Element</h3>
+        <p>© 2025 My Website. All rights reserved.</p>
+    </footer>
+
+    <!-- V. <Nav> -->
+    <h2>5. Navigation Bar</h2>
+    <nav>
+        <a href="#">Home</a> | 
+        <a href="#">About</a> | 
+        <a href="#">Contact</a>
+    </nav>
+
+    <!-- VI. <Embed> -->
+    <h2>6. Embed Element</h2>
+    <embed src="sample.pdf" width="500" height="300" type="application/pdf">
+
+    <!-- VII. <Datalist> -->
+    <h2>7. Datalist Element</h2>
+    <label for="browsers">Choose a browser:</label>
+    <input list="browsers" id="browser-choice" name="browser">
+    <datalist id="browsers">
+        <option value="Google Chrome">
+        <option value="Mozilla Firefox">
+        <option value="Microsoft Edge">
+        <option value="Safari">
+        <option value="Opera">
+    </datalist>
+
+    <!-- VIII. <Bdi> -->
+    <h2>8. Bdi Element (Bi-directional text)</h2>
+    <p>The Arabic name <bdi>أحمد</bdi> is displayed properly in a mixed text direction.</p>
+
+    <!-- IX. <Article> -->
+    <h2>9. Article Element</h2>
+    <article>
+        <h3>Title: Understanding HTML5</h3>
+        <p>HTML5 introduced many new features for structuring web pages more effectively.</p>
+    </article>
+
+    <!-- X. <Output> -->
+    <h2>10. Output Element</h2>
+    <label for="num1">Enter a number: </label>
+    <input type="number" id="num1" oninput="calculate()">
+    
+    <label for="num2">Enter another number: </label>
+    <input type="number" id="num2" oninput="calculate()">
+    
+    <p>Sum: <output id="result"></output></p>
+
+    <script>
+        function calculate() {
+            let num1 = document.getElementById("num1").value;
+            let num2 = document.getElementById("num2").value;
+            document.getElementById("result").textContent = Number(num1) + Number(num2);
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Table</title>
+    <style>
+        body {
+            background-color: yellow;
+            text-align: center;
+        }
+        h1 {
+            color: green;
+        }
+        table {
+            margin: auto;
+            text-align: center;
+            border: 4px solid rgba(31, 6, 6, 0.582);
+            background-color: #ffff66;
+        }
+        th, td {
+            border: 2px solid black;
+            text-align: center;
+        }
+        th {
+            background-color: green;
+        }
+        .break {
+            color: rgb(4, 35, 128);
+            background-color: #ffcc00;
+            font-weight: bold;
+            text-orientation: upright;
+            writing-mode: vertical-rl;
+        }
+        .lunch {
+            background-color: #ffcc00;
+            font-weight: bold;
+            text-orientation: upright;
+            writing-mode: vertical-rl;
+        }
+        .labColor {
+            color: rgb(16, 108, 16);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1><center>TIME TABLE</center></h1>
+
+
+    <table align="center">
+        <tr>
+            <th>Time/Days</th>
+            <th>9:00-9:55</th>
+            <th>9:55-10:50</th>
+            <th>10:50-11:10</th>
+            <th>11:10-12:00</th>
+            <th>12:00-1:00</th>
+            <th>1:00-1:50</th>
+            <th>1:50-2:55</th>
+            <th>2:55-3:50</th>
+            <th>3:50-4:30</th>
+        </tr>
+        <tr>
+            <td>MONDAY</td>
+            <td>1</td>
+            <td>2</td>
+            <td class="break" rowspan="5">
+                BREAK
+            </td>
+            <td>4</td>
+            <td>5</td>
+            <td class="lunch" rowspan="5">
+                LUNCH
+            </td>
+            <td>6</td>
+            <td>7</td>
+            <td>Counselling Class</td>
+        </tr>
+        <tr>
+            <td>TUESDAY</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>---</td>
+            <td>4</td>
+            <td>5</td>
+            <td>Library</td>
+        </tr>
+        <tr>
+            <td>WEDNESDAY</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>---</td>
+            <td colspan="3" class="labColor">Lab</td>
+        </tr>
+        <tr>
+            <td>THURSDAY</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>---</td>
+            <td>4</td>
+            <td>5</td>
+            <td>Library</td>
+        </tr>
+        <tr>
+            <td>FRIDAY</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>---</td>
+            <td>4</td>
+            <td>5</td>
+            <td>Library</td>
+        </tr>
+    </table>
+
+</body>
+</html>
