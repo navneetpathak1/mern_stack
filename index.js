@@ -56,7 +56,8 @@
 // const fs = Require("fs");
 // const data="hello node.js";
 
-const { response } = require("express")
+const { response } = require("express");
+const { number } = require("zod");
 
 
 //!-----> call back function  
@@ -1103,4 +1104,50 @@ const { response } = require("express")
 // }
 
 // main();
+
+
+
+//! new start
+
+// ! every thing in javascript
+
+// const accNum = 1234;
+// let accName = "Navneet";
+// let accEmail = "nav@gmail.com";
+// var accPass = "1234ff"; // avaid to use vat because on issue on block scope and function scope
+// accId = 1234
+// let accState; // javascript take as undefined
+
+// console.log(accName);
+// console.table([accName, accEmail, accPass, accId, accState]);
+// console.log(typeof accName); //string
+// console.log(typeof null); // object
+// console.log(typeof undefined); // undefined
+// console.log(typeof(accPass)); // string
+// console.log(typeof(Number(accPass))); // number
+
+// conversion
+// "123" = 123;
+// "123abc" = NaN;
+// true = 1;
+// false = 0;
+// 0 => false;
+//  1 => true;
+//  "" => false;
+//  "notEmptyString" => true;
+
+
+// console.log(typeof(Number(accName)));
+// console.log(accName);
+
+// console.log("1" + "1"); // 11
+// console.log(1 + 2 + "2"); // 32
+// console.log("1" + 1 + 1); // 111
+
+console.log(null == 0); // null in not converted to zero // false
+console.log(null >= 0); // null in converted to zero // true
+
+
+
+
 

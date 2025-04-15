@@ -1,0 +1,58 @@
+:root{
+    --color-Dark:#00CED1;
+    --color-Aquamarine:#7FFFD4;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 600px;
+    width: 600px;
+    background-color: var(--color-Dark);
+    border: 2px solid #1a8c66;
+}
+
+.box {
+    
+    background-color: var(--color-Aquamarine);
+    border: 2px solid green;
+    height: 300px;
+    animation-name: navneet;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-delay: 4s;
+    /* animation-direction: alternate; */
+    animation-fill-mode: both;
+}
+
+/* @keyframes navneet {
+    from {
+        width: 300px;
+    }
+    to {
+        width: 600px;
+    }
+} */
+
+@keyframes navneet {
+    0% {
+        width: 10%;
+        background-color: aliceblue;
+    }
+    30% {
+        width: 30%;
+        background-color: beige;
+    } 
+    60% {
+        width: 60%;
+        background-color: bisque;
+    }
+    100% {
+        width: 100%;
+        background-color: blanchedalmond;
+    }
+}

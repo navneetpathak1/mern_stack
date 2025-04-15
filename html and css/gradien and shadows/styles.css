@@ -1,0 +1,47 @@
+#box {
+    border: 1px solid black;
+    width: 100px;
+    height: 150px;
+    background-image: linear-gradient(aqua,pink);
+    background-image: linear-gradient(to left,aqua,pink);
+    background-image: linear-gradient(to right,aqua,pink);
+    background-image: linear-gradient(to bottom right,aqua,pink);
+    
+}
+
+.mydiv {
+    border: 1px solid black;
+    width: 100px;
+    height: 150px;
+    margin: 3px;
+    background-image: radial-gradient(white,orange,red);
+    background-image: radial-gradient(circle,white,orange,red);
+    background-image: radial-gradient(white 20%,orange 20%,red 20%,);
+    
+}
+
+#cyclender {
+    border: 1px solid black;
+    width: 100px;
+    height: 150px;
+    margin: 3px;
+    background-image: conic-gradient(red, yellow, green);
+    background-image: conic-gradient(red 45deg, yellow 90deg, green 210deg);
+}
+
+p {
+
+    font-size: 1cm;
+    text-shadow: 2px 2px 2px red;
+    text-shadow: 2px 2px 2px red, 4px 4px 4px green, 5px 5px 5px pink;
+}
+
+.my {
+    width: 100px;
+    height: 150px;
+    margin: 3px;
+    background-color: rgb(244, 124, 144);
+    box-shadow: 3px 3px pink;
+    box-shadow: 3px 3px pink, 4px 4px 4px pink;
+    box-shadow: -3px -3px pink, 4px 4px 4px pink;
+}
