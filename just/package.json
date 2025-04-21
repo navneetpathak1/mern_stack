@@ -1,0 +1,12 @@
+{
+  "name": "just",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+ "scripts": {
+    "build": "sass node_modules/sundarcss/scss/main.scss dist/sundar.css"
+  }
+}

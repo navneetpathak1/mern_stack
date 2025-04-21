@@ -56,8 +56,11 @@
 // const fs = Require("fs");
 // const data="hello node.js";
 
-const { response } = require("express");
-const { number } = require("zod");
+const { Logger } = require("sass");
+const { object } = require("zod");
+
+// const { response } = require("express");
+// const { number } = require("zod");
 
 
 //!-----> call back function  
@@ -1144,8 +1147,125 @@ const { number } = require("zod");
 // console.log(1 + 2 + "2"); // 32
 // console.log("1" + 1 + 1); // 111
 
-console.log(null == 0); // null in not converted to zero // false
-console.log(null >= 0); // null in converted to zero // true
+// console.log(null == 0); // null is not converted to zero // false
+// console.log(null >= 0); // null is converted to zero // true
+
+// let a = 1;
+
+// let b = '1';
+
+// console.log(a == b);
+// console.log(a === b);
+
+
+// ! object
+
+// const person = {
+//     personID: 1,
+//     personName: "navneet",
+//     personDOB: "19/09/2005",
+//     Hello: function() {
+//         console.log("hello " + this.personName);
+        
+//     }
+// };
+
+// console.log(person);
+// console.log(person.personID);
+// console.log(person.personName);
+// console.log(person.Hello());
+
+
+// ! factory function  
+
+// function persons(personID, personName, personDOB) {
+//     return {
+//         personID: personID,
+//         personName: personName,
+//         personDOB: personDOB,
+//         Hello: function() {
+//             console.log("hello " + this.personName);
+//         }
+//     };
+// }
+
+// const p2 = persons(1, "Navneet", "19/09/2005");
+// p2.Hello(); 
+
+
+// ! constructor  function
+
+// function Persons(personID, personName, personDOB) {
+//     this.personID = personID;
+//     this.personName = personName;
+//     this.personDOB = personDOB;
+//     this.Hello = function() {
+//         console.log("hello " + this.personName);
+//     };
+// }
+
+// const p2 = new Persons(2, "Rohit", "1987-04-30");
+// p2.Hello();  // Output: hello Rohit
+
+// Persons.height = 88;
+// console.log(Persons.height);
+
+// delete(Persons.height);
+
+// console.log(Persons.height);
+
+
+// ! for-in loop
+
+// let person = {
+//     pId: 1,
+//     pName: "navneet" 
+// }
+
+// for(let key in person) {
+//     console.log(key + ": " + person[key]);
+// }
+
+// ! for-of loop => only in iterables 
+
+// for(let key of Object.entries(person)) {
+//     console.log(key + ": " + person[key]);
+    
+// }
+
+// ! object cloning
+
+// let src = {
+//     a:10,
+//     b:20,
+//     c:30
+// };
+
+// ! 1)
+
+// let desc = {};
+
+
+// for(let i in src) {
+//     desc[i] = src[i];
+// }
+
+// ! 2)
+
+// let desc = Object.assign({} , src);
+
+//! 3)
+
+// let desc = {...src};
+
+
+// console.log(desc)
+
+
+// OBM => MONGOOSE
+
+
+
 
 
 
