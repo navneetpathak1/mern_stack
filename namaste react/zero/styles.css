@@ -1,0 +1,21 @@
+h1 {
+    color: royalblue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+h2 {
+    color: darkgreen;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+.hello2 {
+    font-size: 2rem;
+    text-decoration: underline;
+}
+
+.hello4 {
+    font-size: 1.5rem;
+    font-style: italic;
+}

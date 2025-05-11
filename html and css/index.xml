@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<students> 
+<student id="101"> 
+<name>Navneet Pathak</name> 
+<email>pathak@example.com</email> 
+<course>B.Tech Computer Science</course> 
+<dob>2002-06-15</dob> 
+</student> 
+<student id="102"> 
+<name>Navneet Bhatt</name> 
+<email>bhatt@example.com</email> 
+<course>BCA</course> 
+<dob>2003-01-20</dob> 
+</student> 
+<student id="103"> 
+<name>Navneet Pandey</name> 
+<email>pandey@example.com</email> 
+<course>BCA</course> 
+<dob>2001-11-08</dob> 
+</student> </students> 
