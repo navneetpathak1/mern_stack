@@ -3,8 +3,28 @@
 <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 ```
+# Parcer App SetUp
+```bash
+  mkdir my-react-parcel-app
+  cd my-react-parcel-app
+  npm init -y
+  npm install --save-dev parcel
+  npm install react react-dom
+  mkdir src
+  touch src/index.jsx index.html
+  "scripts": 
+  {
+  "dev": "parcel index.html",
+  "build": "parcel build index.html"
+  }
+  npm run dev
+```
 
 ---
+## here is all the Terms of Reacts
+```bash
+https://gist.github.com/navneetpathak1/993a92f04d925894e9833d906a977f2d
+```
 
 ## 📦 Popular Bundlers for React
 
@@ -106,3 +126,36 @@ const heading4 = (
 ```bash
   const heading4 = React.createElement("h1", { key: "n" }, "Hello world");
 ```
+---
+
+React Component
+- Class Based Component => Old way 
+- Functional => new way
+
+---
+
+## Component Composition 
+```bash
+const App = () => {
+    return (
+        <div>
+            <Header /> // => Component Composition
+            <Content />
+            <Footer />
+        </div>
+    );
+}; 
+```
+---
+### Read about **Cross Site Scripting (XSS)**
+---
+# Important
+```<React.Fragment> <React.Fragment/>```
+we can also write it as
+```<></> ```
+---
+Know more about
+- ***Config Driven UI***
+- ***Virtual Dom***
+- ***Reconciliation ***
+- ***React Fiber Architecture*** 
