@@ -1,4 +1,4 @@
-## 🌟 For Developers
+## 🌟 For Developers (rafce)
 ```html
 <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -159,3 +159,59 @@ Know more about
 - ***Virtual Dom***
 - ***Reconciliation ***
 - ***React Fiber Architecture*** 
+
+
+
+## monolithic and microservices architecture
+
+- Monolithic: Complete project in one place all APIs, UI, Auth, DB all things are in one project only, So if need to change color of a button then again deploy all project
+
+- Microservices: ***single responsibility principle***, ***separation of concern***
+
+---
+
+***So how We communicate with these different different services:***
+Different different services are operate on different different port, And we communicate using these port.
+
+there are two main approach to do so:
+- 1. Loads -> API call -> Render UI
+- 2. Loads -> Render -> API call -> Render  (Better)  => useEffect
+
+
+In **useEffect** - if no dependency array then useEffect is called every re-render
+                 - if empty dependency array then only once
+                 - if some value inside dependency array then only when the value changes
+---
+
+## Shimmer UI || Skeleton UI
+---
+
+## react-router-dom
+
+- createBrowserRouter
+- createBrowserRouter
+- Outlet
+- Link
+- useRouteError
+- useParams
+
+- **Single page application**
+
+# Two types of routing in web page
+1. Sever side routing => for single page
+2. Client side routing
+
+
+---
+
+## custom hooks
+
+---
+
+## Styling React
+- plain css
+- Sass
+- styled components
+- material ui
+- bootstrap 
+- tailwind css 
